@@ -30,11 +30,12 @@ tab_selection = st.sidebar.radio(
 )
 
 if tab_selection == 'Input: Nat Cat and Man Made Risks':
-
     if 'data' not in st.session_state:
-        data = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
-                            'Estimated Net Loss': [], 'Observation Year': [], 'Country': []})
-        st.session_state.data = data
+        st.session_state.data = pd.DataFrame({
+            'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [],
+            'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
+            'Estimated Net Loss': [], 'Observation Year': [], 'Country': []
+        })
 
     st.dataframe(st.session_state.data)
 
