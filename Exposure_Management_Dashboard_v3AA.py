@@ -613,6 +613,8 @@ elif tab_selection == 'Limit System':
 
 elif tab_selection == 'Payback':
     st.header("Payback")
+    filled_table = pd.DataFrame(st.session_state.data)
+    filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
     if not filled_table.empty or not filled_table_em_extr.empty:
         payback_intervals = st.slider(
             "Select your lower and upper payback acceptance bounds. From 0.0 until the first number the Payback Period Appetite is acceptable, from the first to the second number it may not be acceptable and from the second number to 30.0 it is not acceptable:",
