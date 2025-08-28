@@ -514,7 +514,7 @@ elif tab_selection == 'Currency Convertion':
     
 ############# RESULTING VISUALISATIONS
 
-with tab_4:
+elif tab_selection == 'Resulting Visualisations':
     filled_table = pd.DataFrame(st.session_state.data)
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
 
