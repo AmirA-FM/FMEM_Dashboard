@@ -943,7 +943,16 @@ with tab_8:
 
 ############# OUTPUT: FILLED TABLES
 
-elif tab_selection == 'Output: Filled tables':
+
+if tab_selection == 'Input: Nat Cat and Man Made Risks':
+
+elif tab_selection == 'Input: Emerging and Extraordinary Risks':
+elif tab_selection == 'Currency Convertion':
+elif tab_selection == 'Resulting Visualisations':
+elif tab_selection == 'Limit System':
+elif tab_selection == 'Payback':
+elif tab_selection == 'Geographic Information System (GIS) Analysis':
+
     filled_table = pd.DataFrame(st.session_state.data)
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
 
@@ -974,5 +983,6 @@ elif tab_selection == 'Output: Filled tables':
         file_name="Emerging_Extraordinary_Risk_Table.xlsx",
         mime="application/vnd.ms-excel"
     )
+
 
 
