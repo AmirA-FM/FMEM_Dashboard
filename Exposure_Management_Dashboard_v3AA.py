@@ -611,36 +611,43 @@ elif tab_selection == 'Limit System':
 
 ######### PAYBACK
 
-with tab_6:
+elif tab_selection == 'Payback':
     st.header("Payback")
     if not filled_table.empty or not filled_table_em_extr.empty:
-        payback_intervals = st.slider("Select your lower and upper payback acceptance bounds. From 0.0 until the first number the Payback Period Appetite" \
-        " is acceptable, from the first to the second number it may not be acceptable and from the second number to 30.0 it is not acceptable:", 0.0, 30.0, (5.0, 10.0))
+        payback_intervals = st.slider(
+            "Select your lower and upper payback acceptance bounds. From 0.0 until the first number the Payback Period Appetite is acceptable, from the first to the second number it may not be acceptable and from the second number to 30.0 it is not acceptable:",
+            0.0, 30.0, (5.0, 10.0)
+        )
         extreme_disaster_loss = st.number_input("Enter your Expected Profit:")
         array_affected_scenario_names_nat_cat_man_made = np.unique(filled_table["Scenario Name"].values)
         array_affected_scenario_names_em_extr = np.unique(filled_table_em_extr["Scenario Name"].values)
-        payback_input_choice = st.selectbox("Do you want to observe Nat Cat and Man Made or Emerging and Extraordinary Risks?", ("Nat Cat and Man Made",
-                                                                                                                                 "Emerging and Extraordinary"))
+        payback_input_choice = st.selectbox(
+            "Do you want to observe Nat Cat and Man Made or Emerging and Extraordinary Risks?",
+            ("Nat Cat and Man Made", "Emerging and Extraordinary")
+        )
         
         if payback_input_choice == "Nat Cat and Man Made":
-            extreme_disaster_scenario = st.selectbox("Select Scenario which is affected by the extreme disaster:",
-                                                    (array_affected_scenario_names_nat_cat_man_made), key = 'extreme_disaster_scenario')
-            
+            extreme_disaster_scenario = st.selectbox(
+                "Select Scenario which is affected by the extreme disaster:",
+                array_affected_scenario_names_nat_cat_man_made,
+                key='extreme_disaster_scenario'
+            )
             filtered_table = filled_table[filled_table["Scenario Name"] == extreme_disaster_scenario]
             corresponding_loss = filtered_table["Estimated Net Loss"].values[0]
         elif payback_input_choice == "Emerging and Extraordinary":
-            extreme_disaster_scenario = st.selectbox("Select Scenario which is affected by the extreme disaster:",
-                                                    (array_affected_scenario_names_em_extr), key = 'extreme_disaster_scenario')
-            
+            extreme_disaster_scenario = st.selectbox(
+                "Select Scenario which is affected by the extreme disaster:",
+                array_affected_scenario_names_em_extr,
+                key='extreme_disaster_scenario'
+            )
             filtered_table = filled_table_em_extr[filled_table_em_extr["Scenario Name"] == extreme_disaster_scenario]
             corresponding_loss = filtered_table["Estimated Net Loss"].values[0]
         else:
-            None
+            corresponding_loss = None
         
         st.write("The corresponding Estimated Net Loss in EUR equals to:", corresponding_loss)
-        payback = extreme_disaster_loss / corresponding_loss
+        payback = extreme_disaster_loss / corresponding_loss if corresponding_loss else 0
         st.write("We compare the Payback against the Firm Risk Appetite of a single Realistic Disaster Scenario (RDS).")
-        #st.write(f"The corresponding Payback Period Appetite in years equals to **{payback}**")
         st.markdown(f"<h1 style='text-align: center; color: black;'>Corresponding Payback Period Appetite: {round(payback, 5)} years</h1>", unsafe_allow_html=True)
 
         if payback <= payback_intervals[0]:
