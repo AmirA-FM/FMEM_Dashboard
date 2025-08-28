@@ -12,17 +12,24 @@ import mimetypes
 
 st.set_page_config(layout="wide")
 
-
 st.logo("Forvis_Mazars_Logo_Color_RGB.jpg", size="large")
 st.title(":blue[Exposure Management Dashboard]")
 
-tab_1, tab_2, tab_3, tab_4, tab_5, tab_6, tab_7, tab_8 = st.tabs(['Input: Nat Cat and Man Made Risks', 'Input: Emerging and Extraordinary Risks', 'Currency Convertion',
-                                                           'Resulting Visualisations', 'Limit System', 'Payback', 'Geographic Information System (GIS) Analysis',
-                                                           'Output: Filled tables'])
+tab_selection = st.sidebar.radio(
+    "Select a tab:",
+    [
+        'Input: Nat Cat and Man Made Risks',
+        'Input: Emerging and Extraordinary Risks',
+        'Currency Convertion',
+        'Resulting Visualisations',
+        'Limit System',
+        'Payback',
+        'Geographic Information System (GIS) Analysis',
+        'Output: Filled tables'
+    ]
+)
 
-######### TAB: INPUT
-
-with tab_1:
+if tab_selection == 'Input: Nat Cat and Man Made Risks':
 
     if 'data' not in st.session_state:
         data = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
