@@ -292,10 +292,12 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
     st.image("ERI_Risk_Radar_2025_Emerging_Risk_Radar.jpg")
 
     if 'data_emerging_extraordinary' not in st.session_state:
-        data_emerging_extraordinary = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Impact Assessment': [], 'Time Horizon': [],
-                                                    'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [], 'Estimated Net Loss': [], 'Observation Year': [],
-                                                    'Country': []})
-        st.session_state.data_emerging_extraordinary = data_emerging_extraordinary
+        st.session_state.data_emerging_extraordinary = pd.DataFrame({
+        'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [],
+        'Impact Assessment': [], 'Time Horizon': [],
+        'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
+        'Estimated Net Loss': [], 'Observation Year': [], 'Country': []
+    })
 
     st.dataframe(st.session_state.data_emerging_extraordinary)
 
