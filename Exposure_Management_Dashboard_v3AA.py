@@ -288,10 +288,8 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
 
 ############# INPUT: EMERGING AND EXTRAORDINARY RISKS
 
-with tab_2:
-
+if tab_selection == 'Input: Emerging and Extraordinary Risks':
     st.image("ERI_Risk_Radar_2025_Emerging_Risk_Radar.jpg")
-
 
     if 'data_emerging_extraordinary' not in st.session_state:
         data_emerging_extraordinary = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Impact Assessment': [], 'Time Horizon': [],
@@ -450,11 +448,11 @@ with tab_2:
     with df_form_em_extr:
         df_columns_em_extr = st.columns(10)
         with df_columns_em_extr[0]:
-            st.write(risk_type_option)
+            st.write(risk_type_option_em_extr)
         with df_columns_em_extr[1]:
-            st.write(scenario_cluster_option)
+            st.write(scenario_cluster_option_em_extr)
         with df_columns_em_extr[2]:
-            st.write(scenario_name_option)
+            st.write(scenario_name_option_em_extr)
         with df_columns_em_extr[3]:
             st.write(impact_assessment_option_em_extr)
         with df_columns_em_extr[4]:
@@ -473,15 +471,7 @@ with tab_2:
             st.write(country_em_extr)
         st.form_submit_button(on_click=add_df_form_emerging_extraordinary)
 
-
     if st.button('Restart Application', key = "restart_application_em_extr"):
-        # st.session_state.risk_type_option = None
-        # st.session_state.scenario_cluster_option = None
-        # st.session_state.scenario_name_option = None
-        # st.session_state.estimated_gross_loss = None
-        # st.session_state.estimated_reinsurance_benefits = None
-        # st.session_state.estimated_net_loss = None
-        # st.session_state.observation_year = None
         st.session_state.data_emerging_extraordinary = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Impact Assessment': [], 'Time Horizon': [],
                                                                      'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [], 'Estimated Net Loss': [],
                                                                      'Observation Year': [], 'Country': []})
