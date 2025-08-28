@@ -512,7 +512,7 @@ elif tab_selection == 'Currency Convertion':
         None
 
     
-############# RESULTING VISUALISATIONS
+############# RESULTING VISUALisations
 
 elif tab_selection == 'Resulting Visualisations':
     filled_table = pd.DataFrame(st.session_state.data)
@@ -571,12 +571,12 @@ elif tab_selection == 'Resulting Visualisations':
 
 ############# LIMIT SYSTEM
 
-with tab_5:
+elif tab_selection == 'Limit System':
     st.header("Limit System")
 
     risk_limit = st.number_input('Type in your Risk Limit:')
     if not (filled_table.empty or filled_table_em_extr.empty) and risk_limit != 0.0:
-        st.write("The Limit Utilisation is acceptable, if it lies inside [0.0, 0.90). It is close to not being acceptable, if it lies inside [0.90, 1.0)." \
+        st.write("The Limit Utilisation is acceptable, if it lies inside [0.0, 0.90). It is close to not being acceptable, if it lies inside [0.90, 1.0)."
         " It is not acceptable, if it is higher or equal to 1.0.")
         max_net_loss_nat_cat_man_made = max(filled_table['Estimated Net Loss'])
         max_net_loss_em_extr = max(filled_table_em_extr['Estimated Net Loss'])
