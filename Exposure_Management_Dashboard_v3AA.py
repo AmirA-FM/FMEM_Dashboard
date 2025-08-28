@@ -12,7 +12,8 @@ import mimetypes
 
 st.set_page_config(layout="wide")
 
-st.logo(r"C:\Users\y.lee\Documents\Internal\Exposure Management\Exposure_Management_Dashboard\Forvis_Mazars_Logo_Color_RGB.jpg", size = "large")
+
+st.logo("Forvis_Mazars_Logo_Color_RGB.jpg", size="large")
 st.title(":blue[Exposure Management Dashboard]")
 
 tab_1, tab_2, tab_3, tab_4, tab_5, tab_6, tab_7, tab_8 = st.tabs(['Input: Nat Cat and Man Made Risks', 'Input: Emerging and Extraordinary Risks', 'Currency Convertion',
@@ -282,7 +283,8 @@ with tab_1:
 
 with tab_2:
 
-    st.image(r"C:\Users\y.lee\Documents\Internal\Exposure Management\Exposure_Management_Dashboard\ERI_Risk_Radar_2025_Emerging_Risk_Radar.jpg")
+    st.image("ERI_Risk_Radar_2025_Emerging_Risk_Radar.jpg")
+
 
     if 'data_emerging_extraordinary' not in st.session_state:
         data_emerging_extraordinary = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Impact Assessment': [], 'Time Horizon': [],
@@ -934,4 +936,5 @@ with tab_8:
     filled_table_em_extr_xlsx = to_excel(filled_table_em_extr)
     st.download_button("Download the Emerging and Extraordinary Risk Table", data = filled_table_em_extr_xlsx, file_name = "Emerging_Extraordinary_Risk_Table.xlsx",
                        mime = "application/vnd.ms-excel")
+
 
