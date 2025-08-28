@@ -919,28 +919,6 @@ elif tab_selection == 'Geographic Information System (GIS) Analysis':
     st.title("World Map")
     folium_static(world_map, width=8000, height=1000)
 
-with tab_8:
-    buffer = io.BytesIO()
-    def to_excel(df):
-        output = io.BytesIO()
-        writer = pd.ExcelWriter(output, engine = 'openpyxl')
-        df.to_excel(writer, index = False, sheet_name = 'Sheet1')
-        writer.close()
-        processed_data = output.getvalue()
-        return processed_data
-
-    st.header("Nat Cat and Man Made Risk Table")
-    st.write(filled_table)
-    filled_table_xlsx = to_excel(filled_table)
-    st.download_button("Download the Nat Cat and Man Made Risk Table", data = filled_table_xlsx, file_name = "Nat_Cat_Man_Made_Risk_Table.xlsx",
-                       mime = "application/vnd.ms-excel")
-    
-    st.header("Emerging and Extraordinary Risk Table")
-    st.write(filled_table_em_extr)
-    filled_table_em_extr_xlsx = to_excel(filled_table_em_extr)
-    st.download_button("Download the Emerging and Extraordinary Risk Table", data = filled_table_em_extr_xlsx, file_name = "Emerging_Extraordinary_Risk_Table.xlsx",
-                       mime = "application/vnd.ms-excel")
-
 ############# OUTPUT: FILLED TABLES
 
 elif tab_selection == 'Output: Filled tables':
