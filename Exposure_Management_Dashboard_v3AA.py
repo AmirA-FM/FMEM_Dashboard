@@ -502,9 +502,9 @@ with tab_3:
         usd_currency = st.number_input("Currency Amount in USD in Single Unit Currency:", key = 'usd_currency')
         gbp_currency = st.number_input("Currency Amount in GBP in Single Unit Currency:", key = 'gbp_currency')
         jpy_currency = st.number_input("Currency Amount in JPY in Single Unit Currency:", key = 'jpy_currency')
-        usd_to_eur = usd_currency / 1.0389
-        gbp_to_eur = gbp_currency / 0.82918
-        jpy_to_eur = jpy_currency / 163.06
+        usd_to_eur = usd_currency / usd_conversion if usd_conversion else 0
+        gbp_to_eur = gbp_currency / gbp_conversion if gbp_conversion else 0
+        jpy_to_eur = jpy_currency / jpy_conversion if jpy_conversion else 0
         st.write("The EUR amount converted from USD is equal to:", usd_to_eur)
         st.write("The EUR amount converted from GBP is equal to:", gbp_to_eur)
         st.write("The EUR amount converted from JPY is equal to:", jpy_to_eur)
