@@ -477,31 +477,31 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
                                                                      'Observation Year': [], 'Country': []})
 ############# CURRENCY CONVERSION
 
-with tab_3:
-    #TODO: maybe introduce python package "CurrencyConverter"?
+elif tab_selection == 'Currency Convertion':
     st.title("Convert your currency to EUR")
     st.write("Do you wish to use conversion rates from 31st December 2024 or custom currency conversion rates?")
-    conversion_rate_choice = st.selectbox("From 31st December 2024 or custom currency conversion rates:",
-                                          ("From 31st December 2024", "Custom currency conversion rates"), index = None, key = "conversion_rate_choice")
+    conversion_rate_choice = st.selectbox(
+        "From 31st December 2024 or custom currency conversion rates:",
+        ("From 31st December 2024", "Custom currency conversion rates"),
+        index=None, key="conversion_rate_choice"
+    )
     if conversion_rate_choice == "From 31st December 2024":
-        usd_currency = st.number_input("Currency Amount in USD in Single Unit Currency (1 EUR = 1.0389 USD):", key = 'usd_currency')
-        gbp_currency = st.number_input("Currency Amount in GBP in Single Unit Currency (1 EUR = 0.82918 GBP):", key = 'gbp_currency')
-        jpy_currency = st.number_input("Currency Amount in JPY in Single Unit Currency (1 EUR = 163.06 JPY):", key = 'jpy_currency')
+        usd_currency = st.number_input("Currency Amount in USD in Single Unit Currency (1 EUR = 1.0389 USD):", key='usd_currency')
+        gbp_currency = st.number_input("Currency Amount in GBP in Single Unit Currency (1 EUR = 0.82918 GBP):", key='gbp_currency')
+        jpy_currency = st.number_input("Currency Amount in JPY in Single Unit Currency (1 EUR = 163.06 JPY):", key='jpy_currency')
         usd_to_eur = usd_currency / 1.0389
         gbp_to_eur = gbp_currency / 0.82918
         jpy_to_eur = jpy_currency / 163.06
         st.write("The EUR amount converted from USD is equal to:", usd_to_eur)
         st.write("The EUR amount converted from GBP is equal to:", gbp_to_eur)
         st.write("The EUR amount converted from JPY is equal to:", jpy_to_eur)
-
-
     elif conversion_rate_choice == "Custom currency conversion rates":
-        usd_conversion = st.number_input("How much USD are 1 EUR?", key = 'usd_conversion')
-        gbp_conversion = st.number_input("How much GBP are 1 EUR?", key = 'gbp_conversion')
-        jpy_conversion = st.number_input("How much JPY are 1 EUR?", key = 'jpy_conversion')
-        usd_currency = st.number_input("Currency Amount in USD in Single Unit Currency:", key = 'usd_currency')
-        gbp_currency = st.number_input("Currency Amount in GBP in Single Unit Currency:", key = 'gbp_currency')
-        jpy_currency = st.number_input("Currency Amount in JPY in Single Unit Currency:", key = 'jpy_currency')
+        usd_conversion = st.number_input("How much USD are 1 EUR?", key='usd_conversion')
+        gbp_conversion = st.number_input("How much GBP are 1 EUR?", key='gbp_conversion')
+        jpy_conversion = st.number_input("How much JPY are 1 EUR?", key='jpy_conversion')
+        usd_currency = st.number_input("Currency Amount in USD in Single Unit Currency:", key='usd_currency')
+        gbp_currency = st.number_input("Currency Amount in GBP in Single Unit Currency:", key='gbp_currency')
+        jpy_currency = st.number_input("Currency Amount in JPY in Single Unit Currency:", key='jpy_currency')
         usd_to_eur = usd_currency / usd_conversion if usd_conversion else 0
         gbp_to_eur = gbp_currency / gbp_conversion if gbp_conversion else 0
         jpy_to_eur = jpy_currency / jpy_conversion if jpy_conversion else 0
