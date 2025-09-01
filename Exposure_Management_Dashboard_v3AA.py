@@ -13,7 +13,7 @@ import mimetypes
 st.set_page_config(layout="wide")
 
 st.logo("Forvis_Mazars_Logo_Color_RGB.jpg", size="large")
-st.title(":blue[EEExposure Management Dashboard]")
+st.title(":blue[BExposure Management Dashboard]")
 
 tab_selection = st.sidebar.radio(
     "Select a tab:",
