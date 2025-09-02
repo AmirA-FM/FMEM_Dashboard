@@ -214,7 +214,7 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
     ####################
 
     observation_year = st.number_input(
-        "Select the observation year from 1900 until 2100:",
+        "Reporting Year:",
         min_value = 1900,
         max_value = 2100,
         step = 1, key='observation_year'
@@ -223,7 +223,7 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
     ####################
     
     country = st.selectbox(
-        "Please select country where the scenario is observed:",
+        "Geography:",
         ("Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
          "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
          "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
@@ -409,7 +409,7 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
 #########
 
     observation_year_em_extr = st.number_input(
-        "Select the observation year from 1900 until 2100:",
+        "Reporting Year:",
         min_value = 1900,
         max_value = 2100,
         step = 1, key='observation_year_em_extr'
@@ -418,7 +418,7 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
     ####################
     
     country_em_extr = st.selectbox(
-        "Please select country where the scenario is observed:",
+        "Geography:",
         ("Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan",
          "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia",
          "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cambodia",
