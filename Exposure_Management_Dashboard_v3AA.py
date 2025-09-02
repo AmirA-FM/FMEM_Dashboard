@@ -50,7 +50,7 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
                             'Country': [st.session_state.country]})
         st.session_state.data = pd.concat([st.session_state.data, row])
 
-    risk_type_option = st.selectbox("Observed Risk Type:", ("Man Made", "Nat Cat"), index = None, key='risk_type_option')
+    risk_type_option = st.selectbox("Risk Type:", ("Man Made", "Nat Cat"), index = None, key='risk_type_option')
 
     #################
 
@@ -314,7 +314,7 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
         st.session_state.data_emerging_extraordinary = pd.concat([st.session_state.data_emerging_extraordinary, row])
 
     risk_type_option_em_extr = st.selectbox(
-        "Please select the observed risk type:",
+        "Please select the risk type:",
         ("Emerging", "Extraordinary"),
         index = None, key = 'risk_type_option_em_extr'
         )
