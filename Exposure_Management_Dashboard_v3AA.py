@@ -74,31 +74,31 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
 
     if scenario_cluster_option == "Motor":
             scenario_name_option = st.selectbox(
-                "Please enter the observed scenario name:",
+                "Scenario Name",
                 ("Selby-type liability loss"),
                 index = None, key = 'scenario_name_option'
             )
     elif scenario_cluster_option == "Fire / Explosion":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Temp"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Aviation / Space":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Aviation collision", "Space weather - Solar energetic particle event", "Space weather - Design deficiency", "Generic defect of satellites", "Space debris"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Marine / Transport":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Ships collision", "Conflagoration at a marine complex", "Total loss of high value transport"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Liability":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Hazardous Substance or Contaminated product", "Faulty Advise or Negligence related to a Professional Service", "Pollution / Environmetal indicent",
             "Fraud or Financial Crime", "Professional Lines: Misselling of a Financial Product", "Professional Lines: Failure/Collapse of a Major Corporation",
             "Professional Lines: Failure of a Merger", "Professional Lines: Failure of a Construction Project", "Professional Lines: Recession-Related Losses",
@@ -107,38 +107,38 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
         )
     elif scenario_cluster_option == "Political":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Political Violence"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Cyber":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Power Blackout (Business Blackout)", "Cloud Outage (Cloud Cascade)", "Cyber Crime Event", "Cyber Motor", "Major Data Security Breach", "Ransomware Contagion"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Infectious Disease":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Regional outbreak of a disease", "Global outbreak of a disease"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "SRCC":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Strikes - Riots and Civil Commotion"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Terrorism":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Rockefeller Center: 2 tonne bomb blast", "One World Trade Center: 2 tonne bomb blast", "Terrorism accumulations other than Manhattan",
                 "Conventional one-ton bomb", "9/11 plane attack type", "Gun fire/Truck goes to crowd"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Other Man Made":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Accumulation of casualties to members of sports team"),
             index = None, key = 'scenario_name_option'
         )
@@ -147,57 +147,57 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
 
     elif scenario_cluster_option == "Windstorm":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("North East Windstorm", "South Carolina Windstorm", "Florida Windstorm - Miami-Dade", "Florida Windstorm - Pinellas", "Gulf of Mexico Windstorm",
                 "European Windstorm", "Caribbean/USA Hurricane Windstorm Clash"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Cyclones / Hurricane":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Japanese Typhoon"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Earthquake":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("California Earthquake - Los Angeles", "California Earthquake - San Francisco", "New Madrid Earthquake", "Japanese Earthquake",
                 "Other earthquakes (e.g. in China, Australia, New Zealand)"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Flood":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("UK Flood", "major flood outside of UK"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Wildfires":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Temp"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Volcanic Eruption":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Temp"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Tornado":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Temp"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Drought":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Temp"),
             index = None, key = 'scenario_name_option'
         )
     elif scenario_cluster_option == "Other Nat Cat":
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Pandemic Risk"),
             index = None, key = 'scenario_name_option'
         )
@@ -206,7 +206,7 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
 
     else:
         scenario_name_option = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario name:",
             ("Not Available"),
             index = None, key = 'scenario_name_option'
         )
@@ -338,60 +338,60 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
 
     if scenario_cluster_option_em_extr == "Environmental":
         scenario_name_option_em_extr = st.selectbox(
-        "Please enter the observed scenario name:",
+        "Scenario Name:",
         ("Antimicrobial Resistance", "Climate Change Physical Risk", "Climate Engineering and Storage Techniques", "Emerging Infectious Diseases",
         "Environmental Pollution", "Nature and Biodiversity Loss", "Space Risk"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
     elif scenario_cluster_option_em_extr == "Technological":
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Artificial Intelligence", "Autonomous Machines", "Critical Infrastructure Failures", "Cyber Risks",
             "Data Privacy and Data Ethics", "Hazardous Chemicals and Small Particles", "Information Reliability"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
     elif scenario_cluster_option_em_extr == "Economic":
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Climate Change Transition Risk", "Deterioration of Public Healthcare Systems", "Economic Trade Conflicts and Sanctions", "Evolving Terrorism", "Geopolitical Tensions and Conflicts",
             "Global Debt Crisis", "Mental Health", "Metabolic Syndrome", "Resource Management", "Skills Shortage and Reskilling", "Social Fragmentation"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
     elif scenario_cluster_option_em_extr == "Regulatory":
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Collective Redress", "Legal and Regulatory Complexity", "Medical Advances", "Substance Abuse", "Supply Chain Complexity"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
 #########
     elif scenario_cluster_option_em_extr == "Climate Change Litigation (Greenwashing)":
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Corporate Accountability Crisis", "Greenwashing Scandal Unveiled", "Eco-Fraud Legal Battle"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
     elif scenario_cluster_option_em_extr == "E-Vehicle Explosion due to heatwaves":
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Battery Meltdown Catastrophe", "Thermal Runaway Disaster", "Heatwave-Induced E-Vehicle Explosions"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
     elif scenario_cluster_option_em_extr == "Solar Storms":
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Geomagnetic Storm Havoc", "Solar Flare Disruption", "Space Weather Crisis"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
     elif scenario_cluster_option_em_extr == "Dam Breach":
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Hydraulic Infrastructure Failure", "Catastrophic Flooding Event", "Dam Collapse Emergency"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
 #########
     else:
         scenario_name_option_em_extr = st.selectbox(
-            "Please enter the observed scenario name:",
+            "Scenario Name",
             ("Not Available"),
             index = None, placeholder = "Select an observed scenario name or enter a new one", accept_new_options = True, key = 'scenario_name_option_em_extr'
         )
