@@ -56,19 +56,19 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
 
     if risk_type_option == "Man Made":
             scenario_cluster_option = st.selectbox(
-                "Please enter the observed scenario cluster:",
+                "Scenario cluster:",
                 ("Motor", "Fire / Explosion", "Aviation / Space", "Marine / Transport", "Liability", "Political", "Cyber", "Infectious Disease",
                 "SRCC", "Terrorism", "Other Man Made"),
                 index = None, key = 'scenario_cluster_option'
             )
     elif risk_type_option == "Nat Cat":
             scenario_cluster_option = st.selectbox(
-                "Please enter the observed scenario cluster:",
+                "Scenario cluster:",
                 ("Windstorm", "Cyclones / Hurricane", "Earthquake", "Flood", "Wildfires", "Volcanic Eruption", "Tornado", "Drought", "Other Nat Cat"),
                 index = None, key = 'scenario_cluster_option'
             )
     else:
-        scenario_cluster_option = st.selectbox("Please enter the observed scenario cluster:", ("Not Available"), index = None, key = 'scenario_cluster_option')
+        scenario_cluster_option = st.selectbox("Scenario cluster:", ("Not Available"), index = None, key = 'scenario_cluster_option')
 
     ########
 
@@ -323,18 +323,18 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
 
     if risk_type_option_em_extr == "Emerging":
         scenario_cluster_option_em_extr = st.selectbox(
-            "Please enter the observed scenario cluster:",
+            "Scenario cluster:",
             ("Environmental", "Technological", "Economic", "Regulatory"),
             index = None, placeholder = "Select an observed scenario cluster or enter a new one", accept_new_options = True, key = 'scenario_cluster_option_em_extr'
         )
     elif risk_type_option_em_extr == "Extraordinary":
         scenario_cluster_option_em_extr = st.selectbox(
-            "Please enter the observed scenario cluster:",
+            "Scenario cluster:",
             ("Climate Change Litigation (Greenwashing)", "E-Vehicle Explosion due to heatwaves", "Solar Storms", "Dam Breach"),
             index = None, placeholder = "Select an observed scenario cluster or enter a new one", accept_new_options = True, key = 'scenario_cluster_option_em_extr'
         )
     else:
-        scenario_cluster_option_em_extr = st.selectbox("Please enter the observed scenario cluster:", ("Not Available"), index = None, key = 'scenario_cluster_option_em_extr')
+        scenario_cluster_option_em_extr = st.selectbox("Scenario cluster:", ("Not Available"), index = None, key = 'scenario_cluster_option_em_extr')
 
     if scenario_cluster_option_em_extr == "Environmental":
         scenario_name_option_em_extr = st.selectbox(
