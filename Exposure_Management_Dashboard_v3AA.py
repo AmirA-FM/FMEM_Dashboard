@@ -921,6 +921,10 @@ elif tab_selection == 'Geographic Information System (GIS) Analysis':
 
 
 elif tab_selection == 'Output: Filled tables':
+    
+    filled_table = pd.DataFrame(st.session_state.data)
+    filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
+
     buffer = io.BytesIO()
     def to_excel(df):
         output = io.BytesIO()
