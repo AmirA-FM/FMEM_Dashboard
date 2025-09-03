@@ -75,7 +75,7 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
     if scenario_cluster_option == "Motor":
             scenario_name_option = st.selectbox(
                 "Scenario Name",
-                ("Selby-type liability loss"),
+                ("Car causes train accident and bridge or railway damage","Tunnel collision of two trucks", "Car collision with Football transport bus"),
                 index = None, key = 'scenario_name_option'
             )
     elif scenario_cluster_option == "Fire / Explosion":
@@ -573,6 +573,9 @@ elif tab_selection == 'Resulting Visualisations':
 
 elif tab_selection == 'Limit System':
     st.header("Limit System")
+
+    filled_table = pd.DataFrame(st.session_state.data)
+    filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
 
     risk_limit = st.number_input('Type in your Risk Limit:')
     if not (filled_table.empty or filled_table_em_extr.empty) and risk_limit != 0.0:
