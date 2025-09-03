@@ -919,7 +919,8 @@ elif tab_selection == 'Geographic Information System (GIS) Analysis':
     st.title("World Map")
     folium_static(world_map, width=8000, height=1000)
 
-with tab_8:
+
+elif tab_selection == 'Output: Filled tables':
     buffer = io.BytesIO()
     def to_excel(df):
         output = io.BytesIO()
