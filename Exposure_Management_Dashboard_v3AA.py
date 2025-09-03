@@ -651,7 +651,7 @@ elif tab_selection == 'Payback':
             corresponding_loss = None
         
         st.write("The corresponding Estimated Net Loss in EUR equals to:", corresponding_loss)
-        payback = extreme_disaster_loss / corresponding_loss if corresponding_loss else 0
+        payback = corresponding_loss / extreme_disaster_loss if corresponding_loss else 0
         st.write("We compare the Payback against the Firm Risk Appetite of a single Realistic Disaster Scenario (RDS).")
         st.markdown(f"<h1 style='text-align: center; color: black;'>Corresponding Payback Period Appetite: {round(payback, 5)} years</h1>", unsafe_allow_html=True)
 
