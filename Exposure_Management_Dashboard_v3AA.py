@@ -19,7 +19,7 @@ tab_selection = st.sidebar.radio(
     "Select a tab:",
     [
         'Conventional RDS Input',
-        'Input: Emerging and Extraordinary Risks',
+        'Emerging and Extraordinary Scenarios',
         'Currency Convertion',
         'Resulting Visualisations',
         'Limit System',
@@ -303,7 +303,7 @@ if tab_selection == 'Conventional RDS Input':
 
 ############# INPUT: EMERGING AND EXTRAORDINARY RISKS
 
-if tab_selection == 'Input: Emerging and Extraordinary Risks':
+if tab_selection == 'Emerging and Extraordinary Scenarios':
     st.image("ERI_Risk_Radar_2025_Emerging_Risk_Radar.jpg")
 
     if 'data_emerging_extraordinary' not in st.session_state:
@@ -643,7 +643,7 @@ elif tab_selection == 'Payback':
         array_affected_scenario_names_nat_cat_man_made = np.unique(filled_table["Scenario Name"].values)
         array_affected_scenario_names_em_extr = np.unique(filled_table_em_extr["Scenario Name"].values)
         payback_input_choice = st.selectbox(
-            "Do you want to observe Nat Cat and Man Made or Emerging and Extraordinary Risks?",
+            "Do you want to observe Nat Cat and Man Made or Emerging and Extraordinary Scenarios?",
             ("Nat Cat and Man Made", "Emerging and Extraordinary")
         )
         
@@ -959,10 +959,10 @@ elif tab_selection == 'Output: Filled tables':
     st.download_button("Download the Nat Cat and Man Made Risk Table", data = filled_table_xlsx, file_name = "Nat_Cat_Man_Made_Risk_Table.xlsx",
                        mime = "application/vnd.ms-excel")
     
-    st.header("Emerging and Extraordinary Risk Table")
+    st.header("Emerging and Extraordinary Scenarios Table")
     st.write(filled_table_em_extr)
     filled_table_em_extr_xlsx = to_excel(filled_table_em_extr)
-    st.download_button("Download the Emerging and Extraordinary Risk Table", data = filled_table_em_extr_xlsx, file_name = "Emerging_Extraordinary_Risk_Table.xlsx",
+    st.download_button("Download the Emerging and Extraordinary Scenarios Table", data = filled_table_em_extr_xlsx, file_name = "Emerging_Extraordinary_Risk_Table.xlsx",
                        mime = "application/vnd.ms-excel")
 
 ############# OUTPUT: FILLED TABLES
@@ -991,11 +991,11 @@ if tab_selection == 'Conventional RDS Inputs':
         mime="application/vnd.ms-excel"
     )
 
-    st.header("Emerging and Extraordinary Risk Table")
+    st.header("Emerging and Extraordinary Scenarios Table")
     st.write(filled_table_em_extr)
     filled_table_em_extr_xlsx = to_excel(filled_table_em_extr)
     st.download_button(
-        "Download the Emerging and Extraordinary Risk Table",
+        "Download the Emerging and Extraordinary Scenarios Table",
         data=filled_table_em_extr_xlsx,
         file_name="Emerging_Extraordinary_Risk_Table.xlsx",
         mime="application/vnd.ms-excel"
