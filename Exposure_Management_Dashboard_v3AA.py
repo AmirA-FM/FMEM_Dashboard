@@ -33,7 +33,7 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
 
     if 'data' not in st.session_state:
         data = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
-                            'Estimated Net Loss': [], 'Observation Year': [], 'Country': []})
+                            'Estimated Net Loss': [], 'Observation Year': [], 'Country': [], 'Impact Segments': []})
         st.session_state.data = data
 
     st.dataframe(st.session_state.data)
@@ -47,7 +47,9 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
                             'Estimated Reinsurance Benefits': [st.session_state.estimated_reinsurance_benefits],
                             'Estimated Net Loss': [estimated_net_loss],
                             'Observation Year': [st.session_state.observation_year],
-                            'Country': [st.session_state.country]})
+                            'Country': [st.session_state.country],
+                            'Impacted Segments': [", ".join(st.session_state.impacted_segments)]
+                            })
         st.session_state.data = pd.concat([st.session_state.data, row])
 
     risk_type_option = st.selectbox("Risk Type:", ("Man Made", "Nat Cat"), index = None, key='risk_type_option')
@@ -249,6 +251,14 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
          "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"),
          index = None, key = 'country'
     )
+
+    
+    impact_segments = st.multiselect(
+        "Impacted Segments:",
+        options=["MTPL", "GTPL"],
+        key="impacted_segments"
+    )
+
     
     ####################
 
