@@ -212,13 +212,14 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
         )
 
     ####################
-
-    observation_year = st.number_input(
+      
+    observation_year = st.selectbox(
         "Reporting Year:",
-        min_value = 1900,
-        max_value = 2100,
-        step = 1, key='observation_year'
-        )
+        list(range(2000, 2101)),
+        index=None,
+        key='observation_year'
+    )
+
     
     ####################
     
