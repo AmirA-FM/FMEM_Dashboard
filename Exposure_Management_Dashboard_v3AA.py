@@ -973,6 +973,19 @@ if tab_selection == 'Conventional RDS Inputs':
     filled_table = pd.DataFrame(st.session_state.data)
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
 
+
+######
+uploaded_file = st.file_uploader("Upload Nat Cat and Man Made Risk Table", type=["xlsx"], key="natcat_upload")
+
+if uploaded_file is not None:
+    uploaded_df = pd.read_excel(uploaded_file)
+    st.session_state.data = uploaded_df
+    st.success("Data uploaded and table populated successfully.")
+
+st.dataframe(st.session_state.data)
+
+######
+
     def to_excel(df):
         output = io.BytesIO()
         writer = pd.ExcelWriter(output, engine='openpyxl')
