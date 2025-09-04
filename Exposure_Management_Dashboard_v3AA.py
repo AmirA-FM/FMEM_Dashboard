@@ -18,8 +18,8 @@ st.title(":blue[Accumulation Management Dashboard]")
 tab_selection = st.sidebar.radio(
     "Select a tab:",
     [
-        'Conventional RDS Input',
-        'Emerging and Extraordinary Scenarios',
+        'RDS Conventional - Inputs',
+        'Emerging Scenarios - Inputs',
         'Currency Convertion',
         'Resulting Visualisations',
         'Limit System',
@@ -29,11 +29,11 @@ tab_selection = st.sidebar.radio(
     ]
 )
 
-if tab_selection == 'Conventional RDS Input':
+if tab_selection == 'RDS Conventional - Inputs':
 
     if 'data' not in st.session_state:
         data = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
-                            'Estimated Net Loss': [], 'Observation Year': [], 'Country': [], 'Impact Segments': []})
+                            'Estimated Net Loss': [], 'Observation Year': [], 'Country': [], 'Impacted Segments': []})
         st.session_state.data = data
 
     st.dataframe(st.session_state.data)
@@ -318,7 +318,7 @@ if tab_selection == 'Conventional RDS Input':
 
 ############# INPUT: EMERGING AND EXTRAORDINARY RISKS
 
-if tab_selection == 'Emerging and Extraordinary Scenarios':
+if tab_selection == 'Emerging Scenarios - Inputs':
     st.image("ERI_Risk_Radar_2025_Emerging_Risk_Radar.jpg")
 
     if 'data_emerging_extraordinary' not in st.session_state:
@@ -983,7 +983,7 @@ elif tab_selection == 'Output: Filled tables':
 ############# OUTPUT: FILLED TABLES
 
 
-if tab_selection == 'Conventional RDS Inputs':
+if tab_selection == 'RDS Conventional - Inputs':
     
     filled_table = pd.DataFrame(st.session_state.data)
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
