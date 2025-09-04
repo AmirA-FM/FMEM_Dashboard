@@ -38,6 +38,21 @@ if tab_selection == 'Conventional RDS Input':
 
     st.dataframe(st.session_state.data)
 
+#####TEST########
+    uploaded_file = st.file_uploader(
+        "📤 Upload pre-filled Nat Cat and Man Made Risk Table (Excel)",
+        type=["xlsx"],
+        key="natcat_upload"
+    )
+
+    if uploaded_file is not None:
+        uploaded_df = pd.read_excel(uploaded_file)
+        st.session_state.data = uploaded_df
+        st.success("✅ Uploaded data has been loaded into the dashboard.")
+        st.dataframe(st.session_state.data)
+#####TEST########
+
+
     def add_df_form():
         estimated_net_loss = st.session_state.estimated_gross_loss - st.session_state.estimated_reinsurance_benefits
         row = pd.DataFrame({'Risk Type': [st.session_state.risk_type_option],
@@ -54,7 +69,7 @@ if tab_selection == 'Conventional RDS Input':
 
     risk_type_option = st.selectbox("Risk Type:", ("Man Made", "Nat Cat"), index = None, key='risk_type_option')
 
-    #################
+    ########
 
     if risk_type_option == "Man Made":
             scenario_cluster_option = st.selectbox(
@@ -974,20 +989,6 @@ if tab_selection == 'Conventional RDS Inputs':
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
 
 
-######
-
-    # File uploader for Nat Cat and Man Made Risk Table
-
-    uploaded_file = st.file_uploader("Upload Nat Cat and Man Made Risk Table", type=["xlsx"], key="natcat_upload")
-
-    if uploaded_file is not None:
-        uploaded_df = pd.read_excel(uploaded_file)
-        st.session_state.data = uploaded_df
-        st.success("Data uploaded and table populated successfully.")
-
-    st.dataframe(st.session_state.data)
-
-######
 
     def to_excel(df):
         output = io.BytesIO()
