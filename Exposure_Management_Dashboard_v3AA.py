@@ -18,7 +18,7 @@ st.title(":blue[Accumulation Management Dashboard]")
 tab_selection = st.sidebar.radio(
     "Select a tab:",
     [
-        'RDS Input',
+        'Conventional RDS Input',
         'Input: Emerging and Extraordinary Risks',
         'Currency Convertion',
         'Resulting Visualisations',
@@ -29,7 +29,7 @@ tab_selection = st.sidebar.radio(
     ]
 )
 
-if tab_selection == 'RDS Input':
+if tab_selection == 'Conventional RDS Input':
 
     if 'data' not in st.session_state:
         data = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
@@ -968,7 +968,7 @@ elif tab_selection == 'Output: Filled tables':
 ############# OUTPUT: FILLED TABLES
 
 
-if tab_selection == 'RDS Inputs':
+if tab_selection == 'Conventional RDS Inputs':
     
     filled_table = pd.DataFrame(st.session_state.data)
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
