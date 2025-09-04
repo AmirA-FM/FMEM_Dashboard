@@ -18,7 +18,7 @@ st.title(":blue[Accumulation Management Dashboard]")
 tab_selection = st.sidebar.radio(
     "Select a tab:",
     [
-        'Input: Nat Cat and Man Made Risks',
+        'RDS Input',
         'Input: Emerging and Extraordinary Risks',
         'Currency Convertion',
         'Resulting Visualisations',
@@ -29,7 +29,7 @@ tab_selection = st.sidebar.radio(
     ]
 )
 
-if tab_selection == 'Input: Nat Cat and Man Made Risks':
+if tab_selection == 'RDS Input':
 
     if 'data' not in st.session_state:
         data = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Estimated Gross Loss': [], 'Estimated Reinsurance Benefits': [],
@@ -255,7 +255,7 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
     
     impact_segments = st.multiselect(
         "Impacted Segments:",
-        options=["Commercial Property","Residential Property","Motor Own Damage","Motor TPL PD","Motor TPL BI","General Liability",
+        options=["Commercial Property","Residential Property","Motor Own Damage","Motor TPL PD","Motor TPL BI","General Liability","Business Interruption",
                  "Professional Indemnity (Errors & Omissions)","Product Liability","Employers Liability","Directors and Officers (D&O) Liability",
                  "Workers compensation ","Marine Cargo Insurance","Marine Hull Insurance","Aviation Insurance","Accident and Disability",
                  "Trip Cancellation","Lost Luggage or Documents","Machinery Breakdown / Electronic Equipment","Trade Credit Insurance Surety Bonds Fidelity Guarantee",
@@ -968,7 +968,7 @@ elif tab_selection == 'Output: Filled tables':
 ############# OUTPUT: FILLED TABLES
 
 
-if tab_selection == 'Input: Nat Cat and Man Made Risks':
+if tab_selection == 'RDS Inputs':
     
     filled_table = pd.DataFrame(st.session_state.data)
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
