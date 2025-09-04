@@ -314,7 +314,7 @@ if tab_selection == 'Conventional RDS Input':
         # st.session_state.estimated_net_loss = None
         # st.session_state.observation_year = None
         st.session_state.data = pd.DataFrame({'Risk Type': [], 'Scenario Cluster': [], 'Scenario Name': [], 'Estimated Gross Loss': [],
-                                            'Estimated Reinsurance Benefits': [], 'Estimated Net Loss': [], 'Observation Year': [], 'Country': []})
+                                            'Estimated Reinsurance Benefits': [], 'Estimated Net Loss': [], 'Observation Year': [], 'Country': [],'Impacted Segments': []})
 
 ############# INPUT: EMERGING AND EXTRAORDINARY RISKS
 
