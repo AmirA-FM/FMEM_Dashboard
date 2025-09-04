@@ -25,7 +25,8 @@ tab_selection = st.sidebar.radio(
         'Limit System',
         'Payback',
         'Geographic Information System (GIS) Analysis',
-        'Output: Filled tables'
+        'Output: Filled tables',
+        'Summary KPIs'
     ]
 )
 
