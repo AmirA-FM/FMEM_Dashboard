@@ -982,6 +982,62 @@ elif tab_selection == 'Output: Filled tables':
 
 ############# OUTPUT: FILLED TABLES
 
+    ####TEST#######
+
+elif tab_selection == "Summary KPIs":
+    st.title("📊 Summary KPIs")
+
+    # Load data
+    df = pd.DataFrame(st.session_state.data)
+
+    # Year selector
+    available_years = sorted(df["Observation Year"].dropna().unique())
+    selected_year = st.selectbox("Select Year", available_years, index=available_years.index(2025) if 2025 in available_years else 0)
+
+    # Filter data
+    df_selected = df[df["Observation Year"] == selected_year]
+    df_previous = df[df["Observation Year"] == selected_year - 1]
+
+    # Max Net Loss
+    max_manmade = df_selected[df_selected["Risk Type"] == "Man Made"]["Estimated Net Loss"].max()
+    max_natcat = df_selected[df_selected["Risk Type"] == "Nat Cat"]["Estimated Net Loss"].max()
+
+    # Previous year values
+    prev_manmade = df_previous[df_previous["Risk Type"] == "Man Made"]["Estimated Net Loss"].max()
+    prev_natcat = df_previous[df_previous["Risk Type"] == "Nat Cat"]["Estimated Net Loss"].max()
+
+    # YoY change
+    yoy_manmade = ((max_manmade - prev_manmade) / prev_manmade * 100) if prev_manmade else 0
+    yoy_natcat = ((max_natcat - prev_natcat) / prev_natcat * 100) if prev_natcat else 0
+
+    # Convert to EUR millions
+    max_manmade_m = round(max_manmade / 1e6, 2)
+    max_natcat_m = round(max_natcat / 1e6, 2)
+
+    # Layout
+    col1, col2 = st.columns(2)
+
+    def kpi_box(title, value, yoy, color):
+        arrow = "📈" if yoy >= 0 else "📉"
+        yoy_text = f"{arrow} YoY Change: {yoy:.2f}%"
+        html = f"""
+        <div style="background-color:{color}; padding:20px; border-radius:15px; box-shadow:2px 2px 10px rgba(0,0,0,0.1); text-align:center;">
+            <h3 style="color:white;">{title}</h3>
+            <h1 style="color:white;">€{value}M</h1>
+            <p style="color:white; font-size:18px;">{yoy_text}</p>
+        </div>
+        """
+        return html
+
+    with col1:
+        st.markdown(kpi_box("Max Net Loss - Man Made", max_manmade_m, yoy_manmade, "#d9534f"), unsafe_allow_html=True)
+
+    with col2:
+        st.markdown(kpi_box("Max Net Loss - Nat Cat", max_natcat_m, yoy_natcat, "#0275d8"), unsafe_allow_html=True)
+    
+    
+    ####TEST#######
+
 
 if tab_selection == 'RDS Conventional Inputs':
     
