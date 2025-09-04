@@ -409,13 +409,14 @@ if tab_selection == 'Input: Emerging and Extraordinary Risks':
     )
 #########
 
-    observation_year_em_extr = st.number_input(
-        "Reporting Year:",
-        min_value = 1900,
-        max_value = 2100,
-        step = 1, key='observation_year_em_extr'
-        )
-    
+
+    observation_year_em_extr = st.selectbox(
+    "Reporting Year:",
+    list(range(2000, 2101)),
+    index=None,
+    key='observation_year_em_extr'
+   )
+
     ####################
     
     country_em_extr = st.selectbox(
