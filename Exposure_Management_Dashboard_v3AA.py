@@ -255,7 +255,11 @@ if tab_selection == 'Input: Nat Cat and Man Made Risks':
     
     impact_segments = st.multiselect(
         "Impacted Segments:",
-        options=["MTPL", "GTPL"],
+        options=["Commercial Property","Residential Property","Motor Own Damage","Motor TPL PD","Motor TPL BI","General Liability",
+                 "Professional Indemnity (Errors & Omissions)","Product Liability","Employers Liability","Directors and Officers (D&O) Liability",
+                 "Workers compensation ","Marine Cargo Insurance","Marine Hull Insurance","Aviation Insurance","Accident and Disability",
+                 "Trip Cancellation","Lost Luggage or Documents","Machinery Breakdown / Electronic Equipment","Trade Credit Insurance Surety Bonds Fidelity Guarantee",
+                 "Crop Insurance","Farm Equipment Insurance"],
         key="impacted_segments"
     )
 
