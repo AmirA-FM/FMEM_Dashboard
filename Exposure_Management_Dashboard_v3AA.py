@@ -634,22 +634,52 @@ elif tab_selection == 'Limit System':
         submitted = st.form_submit_button("Submit")
 
     # Save and show dataset
-    if submitted:
-        new_row = {
-            "Year": selected_year,
-            "ManMade Gross Limit": manmade_gross_limit,
-            "ManMade Net Limit": manmade_net_limit,
-            "NatCat Gross Limit": natcat_gross_limit,
-            "NatCat Net Limit": natcat_net_limit
-        }
+    new_row = {
+        "Year": selected_year,
+        "ManMade Gross Limit": manmade_gross_limit,
+        "ManMade Net Limit": manmade_net_limit,
+        "NatCat Gross Limit": natcat_gross_limit,
+        "NatCat Net Limit": natcat_net_limit
+    }
+
+    existing_years = st.session_state.limit_dataset["Year"].values
+    if selected_year in existing_years:
+        overwrite = st.radio(
+            f"An entry for {selected_year} already exists. Do you want to overwrite the existing numbers?",
+            ["Yes", "No"], index=1
+        )
+        if overwrite == "Yes":
+            st.session_state.limit_dataset = st.session_state.limit_dataset[
+                st.session_state.limit_dataset["Year"] != selected_year
+            ]
+            st.session_state.limit_dataset = pd.concat(
+                [st.session_state.limit_dataset, pd.DataFrame([new_row])],
+                ignore_index=True
+            )
+            st.success("✅ Limits overwritten successfully.")
+        else:
+            st.info("ℹ️ Submission cancelled. Existing entry was not overwritten.")
+    else:
         st.session_state.limit_dataset = pd.concat(
             [st.session_state.limit_dataset, pd.DataFrame([new_row])],
             ignore_index=True
         )
-        st.success("Limits saved successfully.")
+        st.success("✅ Limits saved successfully.")
+
 
     st.subheader("Saved Limits Dataset")
     st.dataframe(st.session_state.limit_dataset)
+
+
+#### TEST
+    if st.button("Clear Table"):
+        st.session_state.limit_dataset = pd.DataFrame(columns=[
+            "Year", "ManMade Gross Limit", "ManMade Net Limit", "NatCat Gross Limit", "NatCat Net Limit"
+        ])
+        st.success("✅ All limits have been cleared.")
+
+#### TEST
+
 
     # Utilisation Analysis
     st.subheader("Limit Utilisation Analysis")
