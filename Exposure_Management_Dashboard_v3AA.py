@@ -671,43 +671,12 @@ elif tab_selection == 'Limit System':
     st.dataframe(st.session_state.limit_dataset)
 
 
-#### TEST
     if st.button("Clear Table"):
         st.session_state.limit_dataset = pd.DataFrame(columns=[
             "Year", "ManMade Gross Limit", "ManMade Net Limit", "NatCat Gross Limit", "NatCat Net Limit"
         ])
         st.success("✅ All limits have been cleared.")
 
-#### TEST
-
-
-    # Utilisation Analysis
-    st.subheader("Limit Utilisation Analysis")
-    max_natcat_loss = filtered_natcat_manmade[filtered_natcat_manmade["Risk Type"] == "Nat Cat"]["Estimated Net Loss"].max()
-    max_manmade_loss = filtered_natcat_manmade[filtered_natcat_manmade["Risk Type"] == "Man Made"]["Estimated Net Loss"].max()
-
-    st.write(f"Maximum Net Loss for NatCat: {max_natcat_loss}")
-    st.write(f"Maximum Net Loss for ManMade: {max_manmade_loss}")
-
-    if natcat_net_limit > 0.0 and pd.notna(max_natcat_loss):
-        natcat_utilisation = max_natcat_loss / natcat_net_limit
-        st.write(f"NatCat Net Limit Utilisation: {natcat_utilisation}")
-        if natcat_utilisation < 0.90:
-            st.success("✅ NatCat Limit Utilisation is acceptable.")
-        elif natcat_utilisation < 1.0:
-            st.warning("⚠️ NatCat Limit Utilisation is close to being not acceptable.")
-        else:
-            st.error("❌ NatCat Limit Utilisation is not acceptable.")
-
-    if manmade_net_limit > 0.0 and pd.notna(max_manmade_loss):
-        manmade_utilisation = max_manmade_loss / manmade_net_limit
-        st.write(f"ManMade Net Limit Utilisation: {manmade_utilisation}")
-        if manmade_utilisation < 0.90:
-            st.success("✅ ManMade Limit Utilisation is acceptable.")
-        elif manmade_utilisation < 1.0:
-            st.warning("⚠️ ManMade Limit Utilisation is close to being not acceptable.")
-        else:
-            st.error("❌ ManMade Limit Utilisation is not acceptable.")
 
 
 ######### PAYBACK
