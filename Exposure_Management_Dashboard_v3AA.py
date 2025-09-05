@@ -1111,7 +1111,7 @@ elif tab_selection == "Summary KPIs":
                     <h3 style="color:black;">{title}</h3>
                     <h1 style="color:black;">{utilisation:.2f}%</h1>
                     <div style="width:20px; height:20px; border-radius:50%; background-color:{circle_color}; margin:0 auto;"></div>
-                    <p style="color:black; font-size:18px;">YoY Change: {yoy_diff:.2f} pp</p>
+                    <p style="color:black; font-size:18px;">YoY Change: {yoy_diff:.2f} %p</p>
                 </div>
                 """
                 return html
