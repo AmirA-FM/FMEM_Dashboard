@@ -1058,7 +1058,7 @@ elif tab_selection == "Summary KPIs":
         arrow = "📈" if yoy >= 0 else "📉"
         yoy_text = f"{arrow} YoY Change: {yoy:.2f}%"
         html = f"""
-        <div style="background-color:lightgrey; padding:20px; border-radius:15px; border:2px solid black; margin-bottom:20px; text-align:center;">
+        <div style="background-color:white; padding:20px; border-radius:15px; border:2px solid black; margin-bottom:20px; text-align:center;">
             <h3 style="color:black;">{title}</h3>
             <h1 style="color:black;">€{value}M</h1>
             <p style="color:black; font-size:18px;">{yoy_text}</p>
@@ -1095,7 +1095,7 @@ elif tab_selection == "Summary KPIs":
                 utilisation = loss / limit if limit > 0 else 0
                 status = "✅ Acceptable" if utilisation < 0.90 else ("⚠️ Close" if utilisation < 1.0 else "❌ Not Acceptable")
                 html = f"""
-                <div style="background-color:lightgrey; padding:20px; border-radius:15px; border:2px solid black; margin-bottom:20px; text-align:center;">
+                <div style="background-color:white; padding:20px; border-radius:15px; border:2px solid black; margin-bottom:20px; text-align:center;">
                     <h3 style="color:black;">{title}</h3>
                     <h1 style="color:black;">{utilisation:.2f}</h1>
                     <p style="color:black; font-size:18px;">{status}</p>
