@@ -1058,13 +1058,14 @@ elif tab_selection == "Summary KPIs":
         arrow = "📈" if yoy >= 0 else "📉"
         yoy_text = f"{arrow} YoY Change: {yoy:.2f}%"
         html = f"""
-        <div style="background-color:{color}; padding:20px; border-radius:15px; box-shadow:2px 2px 10px rgba(0,0,0,0.1); text-align:center;">
-            <h3 style="color:white;">{title}</h3>
-            <h1 style="color:white;">€{value}M</h1>
-            <p style="color:white; font-size:18px;">{yoy_text}</p>
+        <div style="background-color:lightgrey; padding:20px; border-radius:15px; border:2px solid black; margin-bottom:20px; text-align:center;">
+            <h3 style="color:black;">{title}</h3>
+            <h1 style="color:black;">€{value}M</h1>
+            <p style="color:black; font-size:18px;">{yoy_text}</p>
         </div>
         """
         return html
+
 
     with col1:
         st.markdown(kpi_box("Max Net Loss - Man Made", max_manmade_m, yoy_manmade, "#7b7778"), unsafe_allow_html=True)
@@ -1074,9 +1075,6 @@ elif tab_selection == "Summary KPIs":
     
 
 
-
-
-    ######TEST######
 
     # Limit Utilisation Boxes
     if 'limit_dataset' in st.session_state:
@@ -1092,14 +1090,15 @@ elif tab_selection == "Summary KPIs":
             max_manmade_gross = df_selected[df_selected["Risk Type"] == "Man Made"]["Estimated Gross Loss"].max()
             max_natcat_gross = df_selected[df_selected["Risk Type"] == "Nat Cat"]["Estimated Gross Loss"].max()
 
+
             def utilisation_box(title, loss, limit, color):
                 utilisation = loss / limit if limit > 0 else 0
                 status = "✅ Acceptable" if utilisation < 0.90 else ("⚠️ Close" if utilisation < 1.0 else "❌ Not Acceptable")
                 html = f"""
-                <div style="background-color:{color}; padding:20px; border-radius:15px; box-shadow:2px 2px 10px rgba(0,0,0,0.1); text-align:center;">
-                    <h3 style="color:white;">{title}</h3>
-                    <h1 style="color:white;">{utilisation:.2f}</h1>
-                    <p style="color:white; font-size:18px;">{status}</p>
+                <div style="background-color:lightgrey; padding:20px; border-radius:15px; border:2px solid black; margin-bottom:20px; text-align:center;">
+                    <h3 style="color:black;">{title}</h3>
+                    <h1 style="color:black;">{utilisation:.2f}</h1>
+                    <p style="color:black; font-size:18px;">{status}</p>
                 </div>
                 """
                 return html
@@ -1117,7 +1116,7 @@ elif tab_selection == "Summary KPIs":
         st.info("ℹ️ Limit dataset not initialized.")
 
     
-    ####TEST#######
+
 
 
 if tab_selection == 'RDS Conventional Inputs':
