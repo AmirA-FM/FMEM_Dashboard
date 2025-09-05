@@ -1038,9 +1038,14 @@ elif tab_selection == "Summary KPIs":
     max_manmade = df_selected[df_selected["Risk Type"] == "Man Made"]["Estimated Net Loss"].max()
     max_natcat = df_selected[df_selected["Risk Type"] == "Nat Cat"]["Estimated Net Loss"].max()
 
+    
+
+
     # Previous year values
     prev_manmade = df_previous[df_previous["Risk Type"] == "Man Made"]["Estimated Net Loss"].max()
     prev_natcat = df_previous[df_previous["Risk Type"] == "Nat Cat"]["Estimated Net Loss"].max()
+    prev_manmade_gross = df_previous[df_previous["Risk Type"] == "Man Made"]["Estimated Gross Loss"].max()
+    prev_natcat_gross = df_previous[df_previous["Risk Type"] == "Nat Cat"]["Estimated Gross Loss"].max()
 
     # YoY change
     yoy_manmade = ((max_manmade - prev_manmade) / prev_manmade * 100) if prev_manmade else 0
