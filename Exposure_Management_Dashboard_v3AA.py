@@ -1072,6 +1072,50 @@ elif tab_selection == "Summary KPIs":
     with col2:
         st.markdown(kpi_box("Max Net Loss - Nat Cat", max_natcat_m, yoy_natcat, "#0275d8"), unsafe_allow_html=True)
     
+
+
+
+
+    ######TEST######
+
+    # Limit Utilisation Boxes
+    if 'limit_dataset' in st.session_state:
+        limit_df = pd.DataFrame(st.session_state.limit_dataset)
+        limit_row = limit_df[limit_df["Year"] == selected_year]
+
+        if not limit_row.empty:
+            manmade_gross_limit = limit_row["ManMade Gross Limit"].values[0]
+            manmade_net_limit = limit_row["ManMade Net Limit"].values[0]
+            natcat_gross_limit = limit_row["NatCat Gross Limit"].values[0]
+            natcat_net_limit = limit_row["NatCat Net Limit"].values[0]
+
+            max_manmade_gross = df_selected[df_selected["Risk Type"] == "Man Made"]["Estimated Gross Loss"].max()
+            max_natcat_gross = df_selected[df_selected["Risk Type"] == "Nat Cat"]["Estimated Gross Loss"].max()
+
+            def utilisation_box(title, loss, limit, color):
+                utilisation = loss / limit if limit > 0 else 0
+                status = "✅ Acceptable" if utilisation < 0.90 else ("⚠️ Close" if utilisation < 1.0 else "❌ Not Acceptable")
+                html = f"""
+                <div style="background-color:{color}; padding:20px; border-radius:15px; box-shadow:2px 2px 10px rgba(0,0,0,0.1); text-align:center;">
+                    <h3 style="color:white;">{title}</h3>
+                    <h1 style="color:white;">{utilisation:.2f}</h1>
+                    <p style="color:white; font-size:18px;">{status}</p>
+                </div>
+                """
+                return html
+
+            col3, col4 = st.columns(2)
+            with col3:
+                st.markdown(utilisation_box("ManMade Gross Limit Utilisation", max_manmade_gross, manmade_gross_limit, "#5bc0de"), unsafe_allow_html=True)
+                st.markdown(utilisation_box("ManMade Net Limit Utilisation", max_manmade, manmade_net_limit, "#5bc0de"), unsafe_allow_html=True)
+            with col4:
+                st.markdown(utilisation_box("NatCat Gross Limit Utilisation", max_natcat_gross, natcat_gross_limit, "#5cb85c"), unsafe_allow_html=True)
+                st.markdown(utilisation_box("NatCat Net Limit Utilisation", max_natcat, natcat_net_limit, "#5cb85c"), unsafe_allow_html=True)
+        else:
+            st.info("ℹ️ No limit data available for the selected year.")
+    else:
+        st.info("ℹ️ Limit dataset not initialized.")
+
     
     ####TEST#######
 
