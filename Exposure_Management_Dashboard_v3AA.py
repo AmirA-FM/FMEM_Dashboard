@@ -1113,12 +1113,15 @@ elif tab_selection == "Summary KPIs":
 
 
             col3, col4 = st.columns(2)
+           
             with col3:
-                st.markdown(utilisation_box("ManMade Gross Limit Utilisation", max_manmade_gross, manmade_gross_limit, "#5bc0de"), unsafe_allow_html=True)
-                st.markdown(utilisation_box("ManMade Net Limit Utilisation", max_manmade, manmade_net_limit, "#5bc0de"), unsafe_allow_html=True)
+                st.markdown(utilisation_box("ManMade Gross Limit Utilisation", max_manmade_gross, manmade_gross_limit, prev_manmade_gross, "#5bc0de"), unsafe_allow_html=True)
+                st.markdown(utilisation_box("ManMade Net Limit Utilisation", max_manmade, manmade_net_limit, prev_manmade, "#5bc0de"), unsafe_allow_html=True)
+
             with col4:
-                st.markdown(utilisation_box("NatCat Gross Limit Utilisation", max_natcat_gross, natcat_gross_limit, "#5cb85c"), unsafe_allow_html=True)
-                st.markdown(utilisation_box("NatCat Net Limit Utilisation", max_natcat, natcat_net_limit, "#5cb85c"), unsafe_allow_html=True)
+                st.markdown(utilisation_box("NatCat Gross Limit Utilisation", max_natcat_gross, natcat_gross_limit, prev_natcat_gross, "#5cb85c"), unsafe_allow_html=True)
+                st.markdown(utilisation_box("NatCat Net Limit Utilisation", max_natcat, natcat_net_limit, prev_natcat, "#5cb85c"), unsafe_allow_html=True)
+
         else:
             st.info("ℹ️ No limit data available for the selected year.")
     else:
