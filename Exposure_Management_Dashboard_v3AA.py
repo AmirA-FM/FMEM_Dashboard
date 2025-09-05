@@ -606,43 +606,79 @@ elif tab_selection == 'Resulting Visualisations':
 elif tab_selection == 'Limit System':
     st.header("Limit System")
 
+    # Initialize limit dataset if not already
+    if 'limit_dataset' not in st.session_state:
+        st.session_state.limit_dataset = pd.DataFrame(columns=[
+            "Year", "ManMade Gross Limit", "ManMade Net Limit", "NatCat Gross Limit", "NatCat Net Limit"
+        ])
+
+    # Load data
     filled_table = pd.DataFrame(st.session_state.data)
     filled_table_em_extr = pd.DataFrame(st.session_state.data_emerging_extraordinary)
 
-    risk_limit = st.number_input('Type in your Risk Limit:')
-    if not (filled_table.empty or filled_table_em_extr.empty) and risk_limit != 0.0:
-        st.write("The Limit Utilisation is acceptable, if it lies inside [0.0, 0.90). It is close to not being acceptable, if it lies inside [0.90, 1.0)."
-        " It is not acceptable, if it is higher or equal to 1.0.")
-        max_net_loss_nat_cat_man_made = max(filled_table['Estimated Net Loss'])
-        max_net_loss_em_extr = max(filled_table_em_extr['Estimated Net Loss'])
-        max_net_loss = max(max_net_loss_nat_cat_man_made, max_net_loss_em_extr)
-        st.write('Your Maximum Net Loss from both input tables is:', max_net_loss)
-        limit_utilisation = max_net_loss / risk_limit
-        st.write('Your Limit Utilisation is:', limit_utilisation)
+    # Year selector
+    all_years = sorted(set(filled_table["Observation Year"].dropna().unique()).union(
+                       filled_table_em_extr["Observation Year"].dropna().unique()))
+    selected_year = st.selectbox("Select Year", all_years, index=0)
 
-        if limit_utilisation < 0.90:
-            green_box_html = """
-            <div style="background-color:green; padding:20px; border-radius:10px;">
-            <h2 style="color:white; text-align:center;">Your Limit Utilisation level is acceptable.</h2>
-            </div>
-            """
-            st.markdown(green_box_html, unsafe_allow_html=True)
-        elif limit_utilisation < 1.0:
-            orange_box_html = """
-            <div style="background-color:orange; padding:20px; border-radius:10px;">
-            <h2 style="color:white; text-align:center;">Your Limit Utilisation level is close to being not acceptable.</h2>
-            </div>
-            """
-            st.markdown(orange_box_html, unsafe_allow_html=True)
-        elif limit_utilisation >= 1.0:
-            red_box_html = """
-            <div style="background-color:red; padding:20px; border-radius:10px;">
-            <h2 style="color:white; text-align:center;">Your Limit Utilisation level is not acceptable.</h2>
-            </div>
-            """
-            st.markdown(red_box_html, unsafe_allow_html=True)
+    # Filter by year
+    filtered_natcat_manmade = filled_table[filled_table["Observation Year"] == selected_year]
+
+    # Input form
+    with st.form("limit_form"):
+        st.subheader("Enter Risk Limits")
+        manmade_gross_limit = st.number_input("ManMade Gross Limit", min_value=0.0)
+        manmade_net_limit = st.number_input("ManMade Net Limit", min_value=0.0)
+        natcat_gross_limit = st.number_input("NatCat Gross Limit", min_value=0.0)
+        natcat_net_limit = st.number_input("NatCat Net Limit", min_value=0.0)
+        submitted = st.form_submit_button("Submit")
+
+    # Save and show dataset
+    if submitted:
+        new_row = {
+            "Year": selected_year,
+            "ManMade Gross Limit": manmade_gross_limit,
+            "ManMade Net Limit": manmade_net_limit,
+            "NatCat Gross Limit": natcat_gross_limit,
+            "NatCat Net Limit": natcat_net_limit
+        }
+        st.session_state.limit_dataset = pd.concat(
+            [st.session_state.limit_dataset, pd.DataFrame([new_row])],
+            ignore_index=True
+        )
+        st.success("Limits saved successfully.")
+
+    st.subheader("Saved Limits Dataset")
+    st.dataframe(st.session_state.limit_dataset)
+
+    # Utilisation Analysis
+    st.subheader("Limit Utilisation Analysis")
+    max_natcat_loss = filtered_natcat_manmade[filtered_natcat_manmade["Risk Type"] == "Nat Cat"]["Estimated Net Loss"].max()
+    max_manmade_loss = filtered_natcat_manmade[filtered_natcat_manmade["Risk Type"] == "Man Made"]["Estimated Net Loss"].max()
+
+    st.write(f"Maximum Net Loss for NatCat: {max_natcat_loss}")
+    st.write(f"Maximum Net Loss for ManMade: {max_manmade_loss}")
+
+    if natcat_net_limit > 0.0 and pd.notna(max_natcat_loss):
+        natcat_utilisation = max_natcat_loss / natcat_net_limit
+        st.write(f"NatCat Net Limit Utilisation: {natcat_utilisation}")
+        if natcat_utilisation < 0.90:
+            st.success("✅ NatCat Limit Utilisation is acceptable.")
+        elif natcat_utilisation < 1.0:
+            st.warning("⚠️ NatCat Limit Utilisation is close to being not acceptable.")
         else:
-            None
+            st.error("❌ NatCat Limit Utilisation is not acceptable.")
+
+    if manmade_net_limit > 0.0 and pd.notna(max_manmade_loss):
+        manmade_utilisation = max_manmade_loss / manmade_net_limit
+        st.write(f"ManMade Net Limit Utilisation: {manmade_utilisation}")
+        if manmade_utilisation < 0.90:
+            st.success("✅ ManMade Limit Utilisation is acceptable.")
+        elif manmade_utilisation < 1.0:
+            st.warning("⚠️ ManMade Limit Utilisation is close to being not acceptable.")
+        else:
+            st.error("❌ ManMade Limit Utilisation is not acceptable.")
+
 
 ######### PAYBACK
 
@@ -1031,7 +1067,7 @@ elif tab_selection == "Summary KPIs":
         return html
 
     with col1:
-        st.markdown(kpi_box("Max Net Loss - Man Made", max_manmade_m, yoy_manmade, "#d9534f"), unsafe_allow_html=True)
+        st.markdown(kpi_box("Max Net Loss - Man Made", max_manmade_m, yoy_manmade, "#7b7778"), unsafe_allow_html=True)
 
     with col2:
         st.markdown(kpi_box("Max Net Loss - Nat Cat", max_natcat_m, yoy_natcat, "#0275d8"), unsafe_allow_html=True)
