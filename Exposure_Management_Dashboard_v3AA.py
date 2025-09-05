@@ -1089,18 +1089,28 @@ elif tab_selection == "Summary KPIs":
             max_manmade_gross = df_selected[df_selected["Risk Type"] == "Man Made"]["Estimated Gross Loss"].max()
             max_natcat_gross = df_selected[df_selected["Risk Type"] == "Nat Cat"]["Estimated Gross Loss"].max()
 
+            def utilisation_box(title, loss, limit, prev_loss, color):
+                utilisation = loss / limit * 100 if limit > 0 else 0
+                prev_utilisation = prev_loss / limit * 100 if limit > 0 else 0
+                yoy_diff = utilisation - prev_utilisation
 
-            def utilisation_box(title, loss, limit, color):
-                utilisation = loss / limit if limit > 0 else 0
-                status = "✅ Acceptable" if utilisation < 0.90 else ("⚠️ Close" if utilisation < 1.0 else "❌ Not Acceptable")
+                if utilisation < 90:
+                    circle_color = "green"
+                elif utilisation < 100:
+                    circle_color = "yellow"
+                else:
+                    circle_color = "red"
+
                 html = f"""
-                <div style="background-color:white; padding:20px; border-radius:15px; border:2px solid blue; margin-bottom:20px; text-align:center;">
+                <div style="background-color:white; padding:20px; border-radius:15px; border:2px solid {color}; margin-bottom:20px; text-align:center;">
                     <h3 style="color:black;">{title}</h3>
-                    <h1 style="color:black;">{utilisation:.2f}</h1>
-                    <p style="color:black; font-size:18px;">{status}</p>
+                    <h1 style="color:black;">{utilisation:.2f}%</h1>
+                    <div style="width:20px; height:20px; border-radius:50%; background-color:{circle_color}; margin:0 auto;"></div>
+                    <p style="color:black; font-size:18px;">YoY Δ: {yoy_diff:.2f} pp</p>
                 </div>
                 """
                 return html
+
 
             col3, col4 = st.columns(2)
             with col3:
